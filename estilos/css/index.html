@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroCold Express - Plataforma de Transportes</title>
+    <!-- Google Fonts: JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <button id="btn-home" class="active" onclick="switchTab('home')">
+                        <i class="fa-solid fa-house"></i> Inicio
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button id="btn-personas" onclick="switchTab('personas')">
+                        <i class="fa-solid fa-user-group"></i> Transporte Personas
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button id="btn-encomiendas" onclick="switchTab('encomiendas')">
+                        <i class="fa-solid fa-box-archive"></i> Encomiendas
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button id="btn-movimientos" onclick="switchTab('movimientos')">
+                        <i class="fa-solid fa-chart-line"></i> Movimientos
+                    </button>
+                </li>
+            </ul>
+
+            <div class="logo-container" onclick="switchTab('home')">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-plane-departure"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">Trans Antioquia</span>
+                    <span class="logo-subtitle">Express Logística</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="view-home" class="section-view active">
+            <div class="hero-banner">
+                <div class="section-title" style="margin-bottom: 0.5rem;">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Soluciones Globales en Movilidad y Carga</span>
+                </div>
+                <p class="company-desc">
+                    AeroCold Express es líder en gestión e infraestructura de logística de frío y transporte ejecutivo.
+                    Conectamos destinos interurbanos e interprovinciales garantizando la máxima rigurosidad técnica, confort, 
+                    y trazabilidad en tiempo real tanto para pasajeros como para carga confidencial y encomiendas.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
+                        <div class="feature-title">Seguimiento en Tiempo Real</div>
+                        <div class="feature-text">Telemetría avanzada y monitoreo GPS continuo para cada pasajero y encomienda en tránsito.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-snowflake"></i></div>
+                        <div class="feature-title">Cadena de Frío Garantizada</div>
+                        <div class="feature-text">Flota con control térmico activo para encomiendas delicadas y médica de alta precisión.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-clock"></i></div>
+                        <div class="feature-title">Puntualidad Absoluta</div>
+                        <div class="feature-text">Compromiso de entrega e itinerarios ejecutivos optimizados por IA logística.</div>
+                    </div>
+                </div>
+            </div>
+
+        
+            <div class="carousel-container">
+                <div class="carousel-slides" id="carouselSlides">
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80" alt="Flota de Transporte Executive">
+                        <div class="slide-caption">
+                            <h3>Flota VIP & Servicios Ejecutivos</h3>
+                            <p>Vehículos modernos climatizados equipados con confort superior e internet satelital.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80" alt="Logística de Encomiendas">
+                        <div class="slide-caption">
+                            <h3>Gestión Especializada de Encomiendas</h3>
+                            <p>Procesamiento automatizado de paquetes con empaquetado térmico y seguro integral.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1200&q=80" alt="Rutas Interurbanas">
+                        <div class="slide-caption">
+                            <h3>Cobertura Nacional Extensa</h3>
+                            <p>Conectividad rápida y segura garantizando la máxima eficiencia operativa día y noche.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="carousel-btn next" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+
+                <div class="carousel-dots" id="carouselDots">
+                    <div class="dot active" onclick="goToSlide(0)"></div>
+                    <div class="dot" onclick="goToSlide(1)"></div>
+                    <div class="dot" onclick="goToSlide(2)"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-personas" class="section-view">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-bus"></i> Registro de Transporte de Personas</h2>
+                <p class="section-desc">Darse de alta o programar un servicio de traslado privado o en grupo.</p>
+            </div>
+
+            <div class="form-card">
+                <div id="notif-personas" class="notification success">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>¡Solicitud de viaje registrada correctamente con código de reserva #TRP-8841!</span>
+                </div>
+
+                <form id="form-personas" onsubmit="handleFormSubmit(event, 'notif-personas')">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="p-nombre"><i class="fa-solid fa-user"></i> Nombre Completo</label>
+                            <input type="text" id="p-nombre" required placeholder="Ej: Roberto Gómez">
+                        </div>
+                        <div class="form-group">
+                            <label for="p-doc"><i class="fa-solid fa-id-card"></i> Documento de Identidad</label>
+                            <input type="text" id="p-doc" required placeholder="Ej: 102938475">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="p-origen"><i class="fa-solid fa-location-dot"></i> Ciudad/Punto de Origen</label>
+                            <input type="text" id="p-origen" required placeholder="Ej: Terminal Norte, C4">
+                        </div>
+                        <div class="form-group">
+                            <label for="p-destino"><i class="fa-solid fa-location-arrow"></i> Destino Final</label>
+                            <input type="text" id="p-destino" required placeholder="Ej: Sede Central / Zona Sur">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="p-fecha"><i class="fa-solid fa-calendar-days"></i> Fecha del Viaje</label>
+                            <input type="date" id="p-fecha" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="p-pasajeros"><i class="fa-solid fa-users"></i> Cantidad de Pasajeros</label>
+                            <input type="number" id="p-pasajeros" min="1" max="50" value="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="p-vehiculo"><i class="fa-solid fa-car"></i> Tipo de Vehículo Requerido</label>
+                            <select id="p-vehiculo" required>
+                                <option value="sedan">Sedán Ejecutivo (1-3 Pers)</option>
+                                <option value="van">Van Premium (4-10 Pers)</option>
+                                <option value="bus">Microbús Interurbano (11-25 Pers)</option>
+                                <option value="omnibus">Ómnibus Gran Turismo (+26 Pers)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="p-contacto"><i class="fa-solid fa-phone"></i> Teléfono de Contacto</label>
+                            <input type="tel" id="p-contacto" required placeholder="+57 300 000 0000">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="p-notas"><i class="fa-solid fa-clipboard-list"></i> Requerimientos Especiales</label>
+                            <textarea id="p-notas" rows="3" placeholder="Sillas para niños, paradas intermedias, equipaje extra..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fa-solid fa-paper-plane"></i> Confirmar y Registrar Pasajeros
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section id="view-encomiendas" class="section-view">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-boxes-packing"></i> Registro de Encomiendas y Carga</h2>
+                <p class="section-desc">Ingrese las especificaciones del paquete o mercancía para efectuar el despacho.</p>
+            </div>
+
+            <div class="form-card">
+                <div id="notif-encomiendas" class="notification success">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>¡Guía de encomienda generada con éxito! N° de Rastreo: #ENC-9022-X</span>
+                </div>
+
+                <form id="form-encomiendas" onsubmit="handleFormSubmit(event, 'notif-encomiendas')">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="e-remitente"><i class="fa-solid fa-user-ninja"></i> Nombre del Remitente</label>
+                            <input type="text" id="e-remitente" required placeholder="Ej: Ana María Silva">
+                        </div>
+                        <div class="form-group">
+                            <label for="e-destinatario"><i class="fa-solid fa-user-check"></i> Nombre del Destinatario</label>
+                            <input type="text" id="e-destinatario" required placeholder="Ej: Carlos Mendoza">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="e-origen"><i class="fa-solid fa-map-pin"></i> Dirección de Recogida</label>
+                            <input type="text" id="e-origen" required placeholder="Ej: Av. Principal 123">
+                        </div>
+                        <div class="form-group">
+                            <label for="e-destino"><i class="fa-solid fa-route"></i> Dirección de Entrega</label>
+                            <input type="text" id="e-destino" required placeholder="Ej: Calle 45 #12-80">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="e-peso"><i class="fa-solid fa-weight-hanging"></i> Peso Estimado (Kg)</label>
+                            <input type="number" step="0.1" id="e-peso" min="0.1" required placeholder="Ej: 5.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="e-tipo"><i class="fa-solid fa-box"></i> Categoría del Envío</label>
+                            <select id="e-tipo" required>
+                                <option value="documentos">Documentos confidenciales</option>
+                                <option value="paquete">Paquete estándar</option>
+                                <option value="frio">Mercancía refrigerada (Cadena de frío)</option>
+                                <option value="fragil">Frágil / Electrónicos</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="e-valor"><i class="fa-solid fa-dollar-sign"></i> Valor Declarado ($)</label>
+                            <input type="number" id="e-valor" required placeholder="Ej: 150000">
+                        </div>
+                        <div class="form-group">
+                            <label for="e-seguro"><i class="fa-solid fa-file-shield"></i> Seguro Cobertura Total</label>
+                            <select id="e-seguro">
+                                <option value="si">Sí, incluir seguro (Recomendado)</option>
+                                <option value="no">No, seguro básico únicamente</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="e-detalles"><i class="fa-solid fa-align-left"></i> Descripción del Contenido</label>
+                            <textarea id="e-detalles" rows="3" placeholder="Detalle las dimensiones aproximadas, observaciones de manipulación..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fa-solid fa-truck-fast"></i> Despachar Encomienda
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section id="view-movimientos" class="section-view">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-users-viewfinder"></i> Registro de Movimientos Mensuales</h2>
+                <p class="section-desc">Resumen detallado de actividades, envíos e itinerarios por el equipo operativo (8 Usuarios registrados).</p>
+            </div>
+
+            <!-- Global Stats Banner -->
+            <div class="movements-summary">
+                <div class="stat-card">
+                    <div class="stat-title">Total Operarios</div>
+                    <div class="stat-value">8 Usuarios</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Movimientos Totales / Mes</div>
+                    <div class="stat-value" id="total-movs">142</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Servicio Predominante</div>
+                    <div class="stat-value" style="color: var(--accent-blue); font-size: 1.2rem; margin-top:0.5rem;">
+                        <i class="fa-solid fa-box"></i> Encomiendas (58%)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid of 8 Registered Users -->
+            <div class="users-grid" id="usersGrid">
+                <!-- User Cards will be injected via Javascript -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Array Data for 8 Users
+        const usersData = [
+            {
+                id: 1,
+                nombre: "Carlos Eduardo Ríos",
+                rol: "Conductor Ejecutivo",
+                avatar: "CR",
+                movimientosMes: 24,
+                servicioUsado: "Transporte de Personas",
+                badgeClass: "badge-person",
+                icono: "fa-user-group",
+                detalles: "Rutas VIP Interurbanas"
+            },
+            {
+                id: 2,
+                nombre: "Mariana Restrepo",
+                rol: "Gestora de Envíos",
+                avatar: "MR",
+                movimientosMes: 31,
+                servicioUsado: "Transporte de Encomiendas",
+                badgeClass: "badge-parcel",
+                icono: "fa-box-archive",
+                detalles: "Especialista Cadena de Frío"
+            },
+            {
+                id: 3,
+                nombre: "Andrés Felipe Silva",
+                rol: "Operador de Logística",
+                avatar: "AS",
+                movimientosMes: 18,
+                servicioUsado: "Transporte de Encomiendas",
+                badgeClass: "badge-parcel",
+                icono: "fa-box-archive",
+                detalles: "Despachos Regionales"
+            },
+            {
+                id: 4,
+                nombre: "Laura Sofia Gómez",
+                rol: "Coordinadora de Rutas",
+                avatar: "LG",
+                movimientosMes: 15,
+                servicioUsado: "Transporte de Personas",
+                badgeClass: "badge-person",
+                icono: "fa-user-group",
+                detalles: "Traslados Corporativos"
+            },
+            {
+                id: 5,
+                nombre: "Diego Alejandro Torres",
+                rol: "Piloto Flota Pesada",
+                avatar: "DT",
+                movimientosMes: 22,
+                servicioUsado: "Transporte de Encomiendas",
+                badgeClass: "badge-parcel",
+                icono: "fa-box-archive",
+                detalles: "Carga Pesada e Industrial"
+            },
+            {
+                id: 6,
+                nombre: "Valentina Morales",
+                rol: "Supervisora Operativa",
+                avatar: "VM",
+                movimientosMes: 12,
+                servicioUsado: "Transporte de Personas",
+                badgeClass: "badge-person",
+                icono: "fa-user-group",
+                detalles: "Vans y Grupos Especiales"
+            },
+            {
+                id: 7,
+                nombre: "Juan Pablo Montoya",
+                rol: "Auxiliar Logístico",
+                avatar: "JM",
+                movimientosMes: 11,
+                servicioUsado: "Transporte de Encomiendas",
+                badgeClass: "badge-parcel",
+                icono: "fa-box-archive",
+                detalles: "Paquetes Express"
+            },
+            {
+                id: 8,
+                nombre: "Camila Andrea Vargas",
+                rol: "Chofer VIP Senior",
+                avatar: "CV",
+                movimientosMes: 9,
+                servicioUsado: "Transporte de Personas",
+                badgeClass: "badge-person",
+                icono: "fa-user-group",
+                detalles: "Servicio Diplomático"
+            }
+        ];
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // Hide all views
+            const views = document.querySelectorAll('.section-view');
+            views.forEach(v => v.classList.remove('active'));
+
+            // Deactivate all navbar buttons
+            const navButtons = document.querySelectorAll('.nav-item button');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Activate specific view and button
+            const selectedView = document.getElementById(`view-${tabId}`);
+            const selectedBtn = document.getElementById(`btn-${tabId}`);
+
+            if (selectedView) selectedView.classList.add('active');
+            if (selectedBtn) selectedBtn.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        let currentSlide = 0;
+        const totalSlides = 3;
+        let slideInterval;
+
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+            resetTimer();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetTimer();
+        }
+
+        function updateCarousel() {
+            const container = document.getElementById('carouselSlides');
+            const dots = document.querySelectorAll('.dot');
+            
+            if(container) {
+                container.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+
+            dots.forEach((dot, idx) => {
+                if (idx === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function startTimer() {
+            slideInterval = setInterval(() => {
+                moveSlide(1);
+            }, 4500);
+        }
+
+        function resetTimer() {
+            clearInterval(slideInterval);
+            startTimer();
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(e, notifId) {
+            e.preventDefault();
+            const notifEl = document.getElementById(notifId);
+            if(notifEl) {
+                notifEl.style.display = 'flex';
+                setTimeout(() => {
+                    notifEl.style.display = 'none';
+                }, 5000);
+            }
+            e.target.reset();
+        }
+
+        function renderUsers() {
+            const grid = document.getElementById('usersGrid');
+            if (!grid) return;
+
+            grid.innerHTML = usersData.map(user => `
+                <div class="user-card">
+                    <div class="user-header">
+                        <div class="user-avatar">${user.avatar}</div>
+                        <div class="user-info">
+                            <h4>${user.nombre}</h4>
+                            <p>${user.rol}</p>
+                        </div>
+                    </div>
+                    <div class="user-stats-list">
+                        <div class="stat-row">
+                            <span class="stat-label">Servicio Utilizado:</span>
+                            <span class="badge ${user.badgeClass}">
+                                <i class="fa-solid ${user.icono}"></i> ${user.servicioUsado}
+                            </span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Movimientos este mes:</span>
+                            <span class="stat-count">${user.movimientosMes} viajes</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Especialidad:</span>
+                            <span style="color: var(--text-muted); font-size: 0.75rem;">${user.detalles}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialization on Load
+        window.onload = function() {
+            renderUsers();
+            startTimer();
+            // Default active view set in HTML
+        };
+    </script>
+</body>
+</html>
